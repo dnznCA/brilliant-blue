@@ -2,10 +2,7 @@
 
 An interactive map for exploring aquatic life recorded around the world. Click anywhere on the ocean (or a lake, or a coastline) to see which species have actually been observed there, or search for a species to see where it's been recorded. Built on [GBIF](https://www.gbif.org/) occurrence data.
 
-**Live demo:** _(add your Vercel URL here after deploying)_
-
-![Brilliant Blue screenshot](docs/screenshot.png)
-<!-- add a screenshot or GIF to docs/screenshot.png and update the path above -->
+**Live demo:** https://brilliant-blue-psi.vercel.app/
 
 ---
 
