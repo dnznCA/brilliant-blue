@@ -27,7 +27,7 @@ Clicking the map builds a small bounding box and sends it to a serverless functi
 
 Selecting a species builds all three distribution layers once and toggles their visibility, so switching views is instant and doesn't re-fetch. The heatmap and points views are drawn from a sampled set of the species' occurrence coordinates; the GBIF view is GBIF's own raster render.
 
-Filtering to aquatic animals is handled by a classifier (`api/_fishUtils.js`) that queries the relevant phyla and keeps a record only if it belongs to an aquatic group — using whole-group inclusion where a group is essentially all-aquatic (fish, cnidarians, echinoderms, cephalopods), and curated whitelists for groups that are mixed with land-dwelling relatives (marine mammals, sea turtles, crustaceans, etc.).
+Filtering to aquatic animals is handled by a classifier (api/_fishUtils.js) that checks each record’s taxonomy and keeps it only if it belongs to an aquatic group. — using broad inclusion for groups that are overwhelmingly aquatic, such as fish, cnidarians, echinoderms, and cephalopods, and curated whitelists for groups that are mixed with land-dwelling relatives (marine mammals, sea turtles, crustaceans, etc.).
 
 ## Running locally
 
@@ -40,7 +40,7 @@ Then open http://localhost:3000. (`vercel dev` is used rather than plain `vite` 
 
 ---
 
-## Scope, limitations, and what this is *not*
+## Data honesty and limitations
 
 This section matters, so it's deliberately detailed. Brilliant Blue is a portfolio exploration tool, and it's built to be honest about what its data does and doesn't represent.
 
@@ -48,7 +48,7 @@ This section matters, so it's deliberately detailed. Brilliant Blue is a portfol
 
 **This is not an AquaMaps clone.** Tools like [AquaMaps](https://www.aquamaps.org/) produce *modeled, predicted* range maps from environmental variables — they estimate where a species *could* live, including unsampled areas. Brilliant Blue does the opposite: it shows real recorded occurrences, nothing inferred or predicted. The two answer different questions ("where could this species live?" vs. "where has it actually been seen?"), and this project intentionally stays on the observation side rather than inventing range it can't support.
 
-**The Heatmap and Points views are a representative sample, not every record.** GBIF caps how many occurrence records a single query can page through, so for wide-ranging species these two views are drawn from a sample of up to ~1,500 points — enough to show the shape of where records cluster, but not exhaustive. (The GBIF tile view, by contrast, is GBIF's complete server-side render.)
+**The Heatmap and Points views are a representative sample, not every record.** For performance and API practicality, the Heatmap and Points views use a sample of up to ~1,500 occurrence coordinates rather than attempting to plot every record for wide-ranging species. (The GBIF tile view, by contrast, is GBIF's complete server-side render.)
 
 **The aquatic classifier is curated, not exhaustive.** Some groups are cleanly all-aquatic and included wholesale. Others — notably molluscs (snails) and arthropods (which include all insects) — are mostly *not* aquatic, with the aquatic members tangled in among terrestrial relatives. Rather than misclassify, the classifier whitelists the clearly-aquatic, recognizable groups (cephalopods, decapod crustaceans, bivalves, sea slugs, etc.) and accepts that coverage of those phyla is best-effort rather than complete.
 

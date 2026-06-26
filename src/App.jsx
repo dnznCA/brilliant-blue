@@ -32,6 +32,7 @@ export default function App() {
   const activeSpeciesRef = useRef(null);
 
   const [distLoading, setDistLoading] = useState(false);
+  const [hoveredKey, setHoveredKey] = useState(null);
 
 
   // Initialize the map once on mount, and set up all event handlers.
@@ -683,9 +684,11 @@ export default function App() {
             </p>
           )}
 
-
+          
+          
           {species.map((s) => {
             const isActive = activeSpecies && activeSpecies.key === s.speciesKey;
+            const isHovered = hoveredKey === s.speciesKey;
             return (
               <div
                 key={s.speciesKey}
@@ -695,7 +698,7 @@ export default function App() {
                       key: s.speciesKey,
                       commonName: s.commonName,
                       scientificName: s.scientificName,
-                      image: s.image,          // ← pass the image too
+                      image: s.image,
                     },
                     false
                   )
@@ -710,10 +713,14 @@ export default function App() {
                   transition: "background 0.15s",
                   background: isActive ? "#e8f0fe" : "transparent",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "#f1f3f4")}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = isActive ? "#e8f0fe" : "transparent")
-                }
+                onMouseEnter={(e) => {
+                  setHoveredKey(s.speciesKey);
+                  e.currentTarget.style.background = "#f1f3f4";
+                }}
+                onMouseLeave={(e) => {
+                  setHoveredKey(null);
+                  e.currentTarget.style.background = isActive ? "#e8f0fe" : "transparent";
+                }}
               >
                 <SpeciesCard
                   image={s.image}
@@ -722,6 +729,30 @@ export default function App() {
                   scientificName={s.scientificName}
                   size="large"
                 />
+
+                {/* GBIF link — appears on hover, pushed to the right */}
+                {isHovered && (
+                  <a
+                    href={`https://www.gbif.org/species/${s.speciesKey}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      marginLeft: "auto",
+                      flexShrink: 0,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: "#1a73e8",
+                      textDecoration: "none",
+                      padding: "4px 8px",
+                      borderRadius: 6,
+                      border: "1px solid #1a73e8",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    GBIF ↗
+                  </a>
+                )}
               </div>
             );
           })}
@@ -732,3 +763,7 @@ export default function App() {
     </div>
   );
 }
+
+
+
+
