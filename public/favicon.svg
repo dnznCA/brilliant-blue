@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <circle cx="16" cy="16" r="15" fill="#1a73e8"/>
+  <g fill="#fff">
+    <!-- fish body -->
+    <path d="M7 16 C10 10, 19 10, 23 16 C19 22, 10 22, 7 16 Z"/>
+    <!-- tail -->
+    <path d="M23 16 L27 12 L27 20 Z"/>
+    <!-- eye (cut back to blue) -->
+    <circle cx="11.5" cy="15" r="1.1" fill="#1a73e8"/>
+  </g>
+</svg>

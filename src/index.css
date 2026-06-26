@@ -1,0 +1,20 @@
+/* Reset: remove the browser's default margin so the app touches all edges */
+* {
+  margin: 0;
+  box-sizing: border-box; /* makes width/padding math predictable */
+}
+
+/* Make the page fill the whole browser window, top to bottom */
+html, body, #root {
+  height: 100%;
+}
+
+/* Set ONE font for the whole app here, so you change it in a single place.
+   Swap "Georgia" for whatever you like: 'Inter', 'Trebuchet MS', etc. */
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
