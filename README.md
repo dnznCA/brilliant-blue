@@ -4,7 +4,7 @@ An interactive map for exploring aquatic life recorded around the world. Click a
 
 **Live demo:** https://brilliant-blue-psi.vercel.app/
 
-![Screenshot](image.png)
+![Website screenshot](docs/screenshot.png)
 
 ---
 
