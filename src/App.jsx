@@ -668,7 +668,7 @@ export default function App() {
               color: "#202124",
               fontFamily: "'Playfair Display', serif",
             }}>
-              Brilliant Blue
+              The Brilliant Blue
             </h2>
           </div>
           <p style={{ margin: "4px 0 0", fontSize: 13, color: "#70757a" }}>
