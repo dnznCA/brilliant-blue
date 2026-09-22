@@ -44,7 +44,7 @@ Then open http://localhost:3000. (`vercel dev` is used rather than plain `vite` 
 
 ## Data honesty and limitations
 
-This section matters, so it's deliberately detailed. Brilliant Blue is a portfolio exploration tool, and it's built to be honest about what its data does and doesn't represent.
+Brilliant Blue is a portfolio exploration tool, and it's built to be honest about what its data does and doesn't represent.
 
 **It shows where species were *recorded*, not where they necessarily *live*.** Every point on the map corresponds to a real observation in GBIF. That means the maps reflect *observation effort* as much as actual distribution — heavily surveyed waters (near research institutions, wealthy coastlines) look denser than under-sampled regions, even if the real populations don't differ that way. Occurrence data is not a range model.
 
